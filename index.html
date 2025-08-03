@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=900, height=600, initial-scale=1.0">
+    <title>EdgyHacks</title>
+    <link rel="stylesheet" href="./global.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a102a 0%, #2d0b3a 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .bg-stunning {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: url('./assets/wallpaper.png') center center/cover no-repeat;
+            filter: brightness(0.35) blur(2px);
+        }
+        .fade-in {
+            animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .splash-logo {
+            filter: drop-shadow(0 0 40px #a78bfa);
+        }
+        .glass {
+            background: rgba(49, 18, 77, 0.75);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(80, 16, 120, 0.37);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(167,139,250,0.18);
+        }
+        .sidebar-gradient {
+            background: linear-gradient(160deg, #6d28d9 0%, #a21caf 100%);
+        }
+        .sidebar-icon {
+            filter: drop-shadow(0 0 10px #a78bfa);
+        }
+        .sidebar-btn {
+            background: linear-gradient(90deg, #a21caf 0%, #6d28d9 100%);
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 2px 12px 0 rgba(167,139,250,0.25), 0 1.5px 0 0 #fff2;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+            letter-spacing: 0.03em;
+        }
+        .sidebar-btn:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-btn:hover, .sidebar-btn:focus {
+            background: linear-gradient(90deg, #f472b6 0%, #a78bfa 100%);
+            color: #fff;
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 4px 24px 0 rgba(236, 72, 153, 0.25), 0 2px 0 0 #fff3;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-stunning"></div>
+    <!-- Splash Screen -->
+    <div id="splash" class="absolute inset-0 flex flex-col items-center justify-center fade-in z-30 bg-[#1a102a]/90">
+        <img src="./assets/logo.jpeg" alt="EdgyHacks Logo" class="w-32 h-32 rounded-full splash-logo mb-6">
+        <h1 class="text-4xl font-extrabold text-purple-300 drop-shadow-lg tracking-wide">EdgyHacks</h1>
+        <p class="text-lg text-purple-100 mt-2">Loading the executor...</p>
+    </div>
+
+    <div class="flex h-screen w-screen relative z-10">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar-gradient flex flex-col items-center py-8 px-4 w-64 min-w-[16rem] h-full shadow-2xl z-10">
+            <div class="flex flex-col items-center mb-10">
+                <img src="./assets/logo.jpeg" class="w-16 h-16 rounded-full sidebar-icon mb-2">
+                <span class="text-white text-2xl font-extrabold tracking-wide">EdgyHacks</span>
+                <span class="text-purple-100 text-xs mt-1">for Valorant</span>
+            </div>
+            <nav class="flex flex-col gap-0 w-full">
+                <button class="sidebar-btn w-full py-2 px-4 rounded-lg mb-2 shadow-lg">🏠 Home</button>
+                <button class="sidebar-btn w-full py-2 px-4 rounded-lg mb-2 shadow-lg">💎 Premium</button>
+                <button class="sidebar-btn w-full py-2 px-4 rounded-lg shadow-lg">⚙️ Settings</button>
+            </nav>
+            <div class="flex-1"></div>
+            <div class="flex flex-col items-center gap-2">
+                <a href="https://www.patreon.com/posts/edgyhacks-keys-135604743?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-400 transition-all duration-200 shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><circle cx="17" cy="15" r="4"/><rect x="3" y="3" width="4" height="18" rx="2"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500 hover:bg-purple-400 transition-all duration-200 shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10C22 6.477 17.523 2 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/><path d="M10 17l6-5-6-5z"/></svg>
+                </a>
+            </div>
+            <button id="logout-btn" class="w-full py-3 rounded-lg bg-pink-700 hover:bg-pink-600 text-white font-bold text-lg transition-all duration-200 shadow-lg mt-6 hidden">Logout</button>
+            <div class="mt-6 text-xs text-purple-100 opacity-70">EdgyHacks &copy; 2024</div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex items-center justify-center relative">
+            <!-- Main Menu -->
+            <div id="main-menu" class="hidden flex flex-col items-center justify-center w-full max-w-md p-8 glass fade-in z-10">
+                <h2 class="text-3xl font-bold text-purple-200 mb-2">Welcome to EdgyHacks</h2>
+                <p class="text-purple-100 mb-6 text-center">Enter your premium key to unlock hacks for Valorant.<br>
+                Don't have a key? <span class="text-purple-300 font-semibold">Get one on Patreon!</span></p>
+                <input id="username-input" type="text" placeholder="Enter Username" class="w-full px-4 py-2 rounded-lg border border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 bg-[#2d0b3a] text-purple-200 transition-all duration-200">
+                <input id="key-input" type="text" placeholder="Enter Premium Key" class="w-full px-4 py-2 rounded-lg border border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 bg-[#2d0b3a] text-purple-200 transition-all duration-200">
+                <button id="submit-key" class="w-full py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-bold transition-all duration-200 mb-2">Unlock</button>
+                <button id="patreon-btn" class="w-full py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-white font-semibold transition-all duration-200">Get Key on Patreon</button>
+                <p id="key-error" class="text-red-400 mt-3 hidden"></p>
+            </div>
+
+            <!-- Post-Validation (Hacks Menu) -->
+            <div id="hacks-menu" class="hidden flex flex-col items-center justify-center w-full max-w-lg p-10 glass fade-in z-10">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Welcome" class="w-40 h-40 rounded-2xl mb-6 shadow-2xl">
+                <h2 id="hacks-welcome" class="text-3xl font-extrabold text-purple-200 mb-2">Welcome, Hacker!</h2>
+                <p class="text-purple-100 mb-6 text-center">You're in. Choose your action below.</p>
+                <!-- Status indicator will be injected here by JS -->
+                <button id="attach-hack" class="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-bold text-lg mb-4 transition-all duration-200 shadow-lg">Attach Hack to Valorant</button>
+                <button id="other-options" class="w-full py-3 rounded-lg bg-[#2d0b3a] hover:bg-[#3b0764] text-purple-200 font-semibold text-lg transition-all duration-200">Other Options</button>
+                <!-- Logout button moved to sidebar -->
+            </div>
+        </main>
+    </div>
+    <script src="./renderer.js"></script>
+    <!-- The loading overlay is injected by renderer.js -->
+</body>
+</html>
